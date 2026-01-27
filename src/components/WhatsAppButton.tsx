@@ -1,5 +1,5 @@
-import { FaWhatsapp } from "react-icons/fa";
 import { useDirection } from "@/hooks/useDirection";
+import { FaWhatsapp } from "react-icons/fa";
 
 const WhatsAppButton = () => {
   const { isRTL } = useDirection();
@@ -18,11 +18,9 @@ const WhatsAppButton = () => {
         transition-all duration-300
         hover:scale-110
         ${isRTL ? "left-6" : "right-6"}
-        relative
       `}
       aria-label="WhatsApp"
     >
-      {/* 🔴 Badge */}
       <span
         className={`absolute -top-1
           ${isRTL ? "-left-1" : "-right-1"}
@@ -36,9 +34,14 @@ const WhatsAppButton = () => {
       >
         1
       </span>
-
-      {/* WhatsApp Icon */}
-      <FaWhatsapp className="w-7 h-7 text-white" />
+<FaWhatsapp
+  style={{
+    fontSize: "28px",
+    lineHeight: 1,
+    display: "block",
+  }}
+  className="text-white"
+/>
     </a>
   );
 };
