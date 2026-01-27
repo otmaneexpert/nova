@@ -76,7 +76,7 @@ const SocialSection = () => {
 
         <div className="flex justify-center gap-6">
           <a
-            href="https://www.facebook.com/5abir.ma/"
+            href="https://www.facebook.com/profile.php?id=10007767405908"
             target="_blank"
             rel="noopener noreferrer"
             className="w-14 h-14 bg-primary text-primary-foreground rounded-full flex items-center justify-center hover:bg-primary/90 transition-colors"
@@ -84,7 +84,7 @@ const SocialSection = () => {
             <FaFacebookF size={24} />
           </a>
           <a
-            href="https://www.instagram.com/5abir.ma/"
+            href="https://www.instagram.com/nova_auto_expertise"
             target="_blank"
             rel="noopener noreferrer"
             className="w-14 h-14 bg-gradient-to-br from-[hsl(280,67%,51%)] via-[hsl(330,81%,60%)] to-[hsl(30,94%,54%)] text-primary-foreground rounded-full flex items-center justify-center hover:opacity-90 transition-opacity"

@@ -115,10 +115,10 @@ const Footer = () => {
               {t("footer.description")}
             </p>
             <div className="flex gap-4">
-              <a href="https://www.facebook.com/5abir.ma/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+              <a href="https://www.facebook.com/profile.php?id=100077674059083" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
                 <FaFacebookF size={16} />
               </a>
-              <a href="https://www.instagram.com/5abir.ma/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+              <a href="https://www.instagram.com/nova_auto_expertise" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
                 <FaInstagram size={16} />
               </a>
               <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
@@ -160,7 +160,7 @@ const Footer = () => {
             <ul className="space-y-3 text-white/80">
               <li className="flex items-center gap-2">
                 <Phone size={16} className="text-secondary" />
-                <a href="tel:+212606141818" className="hover:text-secondary transition-colors" dir="ltr">
+                <a href="tel:+212665611376" className="hover:text-secondary transition-colors" dir="ltr">
                   {t("footer.contactInfo.phone")}
                 </a>
               </li>

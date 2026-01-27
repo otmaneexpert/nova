@@ -201,7 +201,7 @@ const StatsSection = () => {
               {t("stats.cta.title")}
             </h3>
             <motion.a
-              href="tel:+212640051774"
+              href="tel:+212665611376"
               className="inline-block bg-background text-secondary font-semibold px-8 py-3 rounded-full hover:bg-muted transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
