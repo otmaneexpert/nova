@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary:201 98 61;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 29.03 24.31;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 234 53% 39%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 234 53% 39%;
+
+    --radius: 0.5rem;
+
+    /* Custom colors for 5abir.ma */
+    --navy: 234 53% 39%;
+    --navy-dark: 234 53% 25%;
+    --green: 145 70% 36%;
+    --green-light: 145 70% 45%;
+    --light-blue: 210 100% 97%;
+    --gray-light: 220 14% 96%;
+    --gray-text: 220 9% 46%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 234 53% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 145 70% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 212 27% 84%;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  [dir="rtl"] body {
+    font-family: 'Cairo', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-poppins;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* .btn-primary {
+    @apply bg-secondary text-white font-semibold px-8 py-3 rounded-full hover:bg-secondary/90 transition-all duration-300;
+  } */
+  .btn-primary {
+    @apply bg-white text-primary font-semibold px-8 py-3 rounded-full hover:bg-secondary/90 transition-all duration-300;
+  }
+
+  .btn-outline {
+    @apply bg-transparent border-2 border-white text-white font-semibold px-8 py-3 rounded-full hover:bg-white hover:text-primary transition-all duration-300;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-foreground;
+  }
+
+  .section-title span {
+    @apply text-secondary;
+  }
+
+  .section-divider {
+    @apply flex items-center justify-center gap-3 my-4;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    @apply w-16 h-0.5 bg-secondary;
+  }
+
+  .timeline-line {
+    @apply absolute left-1/2 transform -translate-x-1/2 w-1 bg-secondary h-full;
+  }
+
+  .timeline-dot {
+    @apply w-14 h-14 rounded-full bg-secondary flex items-center justify-center text-white text-xl z-10;
+  }
+
+  .pricing-card {
+    @apply bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:shadow-2xl transition-all duration-300;
+  }
+
+  .engagement-card {
+    @apply bg-white rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300;
+  }
+
+  .stat-card {
+    @apply text-center;
+  }
+
+  .stat-number {
+    @apply text-5xl md:text-6xl font-bold text-secondary;
+  }
+
+  .faq-item {
+    @apply border-b border-gray-200 py-4;
+  }
+}
+
+@layer utilities {
+  .gradient-overlay {
+   background: linear-gradient(
+  to bottom,
+  rgba(15, 42, 68, 0.65),
+  rgba(15, 42, 68, 0.9)
+);
+
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+}

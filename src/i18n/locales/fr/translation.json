@@ -1,0 +1,339 @@
+{
+  "nav": {
+    "home": "ACCUEIL",
+    "reserve": "RÉSERVER VOTRE EXPERT",
+    "services": "NOS SERVICES",
+    "advice": "CONSEILS AUTO",
+    "language": "FRANÇAIS"
+  },
+  "hero": {
+    "title1": "L'expertise automobile n°1 au Maroc",
+    "title2": "100% mobile, 100% fiable.",
+    "stats": "96% de précision dans nos diagnostics | 98% de taux de satisfaction client",
+    "reserve": "Réserver Votre Expert",
+    "prices": "Voir Nos Prix",
+    "cities": "Voir les villes disponibles"
+  },
+  "howItWorks": {
+    "title": "Comment ça marche ?",
+    "subtitle": "Chez Nova, nous facilitons le diagnostic de votre voiture avant l'achat. Notre processus est simple, rapide et fiable.",
+    "steps": {
+      "1": {
+        "title": "Prise de rendez-vous",
+        "description": "Vous pouvez prendre rendez-vous en toute simplicité :",
+        "items": [
+          "En remplissant notre formulaire en ligne",
+          "Ou en nous contactant directement par téléphone"
+        ]
+      },
+      "2": {
+        "title": "Confirmation par notre expert",
+        "description": "L'un de nos experts vous appellera pour :",
+        "items": [
+          "Confirmer le rendez-vous",
+          "Recueillir les informations nécessaires sur le véhicule à inspecter"
+        ]
+      },
+      "3": {
+        "title": "Déplacement de l'expert",
+        "description": "Nous nous déplaçons jusqu'à vous, où que vous soyez :",
+        "items": [
+          "À votre domicile",
+          "Chez un vendeur",
+          "Dans un garage ou tout autre lieu"
+        ]
+      },
+      "4": {
+        "title": "Réalisation de l'expertise",
+        "description": "Notre expert procède à une inspection complète de votre véhicule, couvrant plus de 150 points :",
+        "items": [
+          "Diagnostic électronique",
+          "Vérification mécanique",
+          "Contrôle de la carrosserie et de la peinture",
+          "Test de conduite, etc."
+        ]
+      },
+      "5": {
+        "title": "Remise du rapport sur place",
+        "description": "À la fin de l'expertise, vous recevez immédiatement un rapport détaillé, clair et fiable pour vous aider dans votre décision d'achat.",
+        "items": []
+      }
+    }
+  },
+    "pricing": {
+    "title": "Nos Tarifs ?",
+    "pack": {
+      "name": "Pack D'expertise",
+      "startingFrom": "A partir de",
+      "currency": "MAD",
+      "features": [
+        "Contrôle de la carrosserie et châssis",
+        "Vérification de la peinture",
+        "Inspection du moteur",
+        "Diagnostic électronique",
+        "Inspection intérieure",
+        "Kilométrage réel",
+        "Test drive"
+      ],
+      "cta": "plus de détails"
+    }
+  },
+    "cities": {
+    "title": "Où nous opérons",
+    "subtitle": "Oubliez les déplacements : c'est notre expert qui vient à vous, dans toutes les villes couvertes.",
+    "mapAlt": "Carte des villes couvertes par Nova"
+  },
+    "contact": {
+    "title": "Réservez votre inspection maintenant",
+    "subtitle": "Remplissez ce formulaire et notre équipe vous contactera rapidement pour confirmer votre demande et planifier l'inspection à l'endroit qui vous convient.",
+    "form": {
+      "name": {
+        "label": "Votre nom complet",
+        "placeholder": "Votre nom complet"
+      },
+      "phone": {
+        "label": "Votre numéro de téléphone",
+        "placeholder": "Votre numéro de téléphone"
+      },
+      "city": {
+        "label": "Votre ville",
+        "placeholder": "Votre ville"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Message (optionnel)"
+      },
+      "date": {
+        "label": "Date préférée",
+        "selectDate": "Sélectionnez une date"
+      },
+      "submit": "Envoyer ma demande",
+      "success": "Demande envoyée avec succès !",
+      "error": "Une erreur est survenue. Veuillez réessayer."
+    },
+    "calendar": {
+      "today": "Aujourd'hui",
+      "previous": "Précédent",
+      "next": "Suivant"
+    }
+  },
+    "engagements": {
+    "title": "Nos engagements",
+    "subtitle": "Chez Nova, nos valeurs guident chacune de nos interventions pour vous garantir la meilleure expérience possible.",
+    "items": [
+      {
+        "title": "Transparence",
+        "description": "Nos experts inspectent chaque véhicule sur plus de 150 points de contrôle."
+      },
+      {
+        "title": "Disponibilité",
+        "description": "Nos spécialistes sont toujours prêts à répondre à vos demandes 24/7."
+      },
+      {
+        "title": "Conseils personnalisés",
+        "description": "Nos experts vous indiquent si l'achat est une bonne option et vous recommandent le prix adapté."
+      },
+      {
+        "title": "Simplicité",
+        "description": "L'expert se déplace jusqu'au propriétaire du véhicule, vous n'êtes pas obligé d'être présent."
+      }
+    ]
+  },
+    "about": {
+    "title": "À propos de Nova ?",
+    "paragraphs": [
+      "Notre équipe d'experts qualifiés vous accompagne tout au long du processus en vous fournissant des informations précises et détaillées sur chaque véhicule.",
+      "Chez Nova, nous comprenons que l'achat d'une voiture d'occasion représente un investissement important. C'est pourquoi nous proposons une inspection professionnelle à des tarifs clairs et accessibles, adaptés à tous les budgets.",
+      "Nous inspectons chaque voiture avec la plus grande attention pour garantir son état et sa qualité. Grâce aux technologies les plus avancées et à des méthodes de diagnostic précises, nous vérifions chaque détail.",
+      "La confiance et la transparence sont nos priorités."
+    ],
+    "highlight": "La confiance et la transparence sont nos priorités."
+  },
+    "stats": {
+    "title": "Pourquoi choisir Nova ?",
+    "subtitle": "Des chiffres qui prouvent notre engagement à vous offrir un service rapide, fiable et professionnel pour chaque diagnostic.",
+    "items": [
+      {
+        "value": 2238,
+        "suffix": "+",
+        "label": "Diagnostics faits"
+      },
+      {
+        "value": 83,
+        "suffix": "%",
+        "label": "Clients satisfaits"
+      },
+      {
+        "value": 0,
+        "suffix": "h+",
+        "label": "Rapport express"
+      }
+    ],
+    "cta": {
+      "title": "Découvrez l'histoire de n'importe quel véhicule",
+      "button": "Appeler Maintenant"
+    }
+  },
+    "support": {
+    "title": "Tu as des questions ?",
+    "subtitle": "Obtiens les réponses dont tu as besoin, quand tu en as besoin.",
+    "stats": [
+      {
+        "value": "97%",
+        "label": "de taux de satisfaction"
+      },
+      {
+        "value": "24/7",
+        "label": "disponible"
+      },
+      {
+        "value": "12-24h",
+        "label": "de temps de réponse en moyenne"
+      }
+    ],
+    "button": "Envoie-nous un message",
+    "contact": {
+      "phone": "+212 6 65 61 13 76",
+      "email": "contact@novaautoexpertise.ma",
+      "availability": "Disponible 24h/24, 7j/7"
+    }
+  },
+    "faq": {
+    "title": "Questions fréquentes",
+    "subtitle": "Voici les réponses aux questions que nos clients se posent souvent avant de réserver un diagnostic automobile avec Nova.",
+    "items": [
+      {
+        "question": "Le diagnostic se fait-il sur place ou en garage ?",
+        "answer": "Le diagnostic se fait directement sur le lieu de votre choix : à domicile, au travail ou chez le vendeur."
+      },
+      {
+        "question": "Combien de temps dure le diagnostic ?",
+        "answer": "Le diagnostic prend en moyenne entre 45 minutes et 1 heure, selon l'état du véhicule et les éléments à inspecter."
+      },
+      {
+        "question": "Est-ce que je reçois un rapport écrit ?",
+        "answer": "Oui, vous recevez un rapport clair et complet avec des recommandations pour vous aider à prendre une décision d'achat."
+      },
+      {
+        "question": "Que couvre exactement le diagnostic de Nova ?",
+        "answer": "Notre diagnostic couvre les points essentiels du véhicule : mécanique, carrosserie, châssis, électronique de base et historique visible du véhicule."
+      },
+      {
+        "question": "Quand dois-je réserver mon rendez-vous ?",
+        "answer": "Pour garantir la disponibilité de nos experts, il est recommandé de réserver au moins une journée à l'avance."
+      }
+    ],
+    "cta": {
+      "title": "Vous avez d'autres questions ?",
+      "text": "N'hésitez pas à nous contacter pour plus d'informations",
+      "button": "Contactez-nous"
+    }
+  },
+    "social": {
+    "title": "Suivez-nous sur les réseaux",
+    "subtitle": "Découvrez nos interventions, avis clients et conseils auto en nous suivant sur nos réseaux sociaux.",
+    "networks": [
+      {
+        "name": "Facebook",
+        "icon": "facebook",
+        "url": "https://www.facebook.com/5abir.ma/",
+        "color": "primary",
+        "description": "Rejoignez notre communauté Facebook"
+      },
+      {
+        "name": "Instagram",
+        "icon": "instagram",
+        "url": "https://www.instagram.com/5abir.ma/",
+        "color": "gradient",
+        "description": "Suivez nos interventions en images"
+      },
+      {
+        "name": "YouTube",
+        "icon": "youtube",
+        "url": "https://www.youtube.com",
+        "color": "destructive",
+        "description": "Regardez nos vidéos de diagnostic"
+      }
+    ],
+    "cta": {
+      "follow": "Suivez-nous",
+      "share": "Partagez notre page",
+      "hashtag": "#NovaAutoExpertise"
+    }
+  },
+    "testimonials": {
+    "title": "Ce que disent nos clients",
+    "subtitle": "La satisfaction de nos clients est notre plus grande fierté. Découvrez leurs retours d'expérience après avoir utilisé notre service d'inspection.",
+    "items": [
+      {
+        "name": "Mohammed A.",
+        "rating": 5,
+        "text": "Service excellent ! L'expert était très professionnel et le rapport très détaillé. Je recommande vivement Nova",
+        "location": "Casablanca",
+        "date": "Il y a 2 semaines",
+        "car": "Mercedes Classe C 2019"
+      },
+      {
+        "name": "Fatima Z.",
+        "rating": 5,
+        "text": "Grâce à leur diagnostic, j'ai évité d'acheter une voiture avec des problèmes cachés. Merci beaucoup !",
+        "location": "Rabat",
+        "date": "Il y a 1 mois",
+        "car": "Renault Clio 2020"
+      },
+      {
+        "name": "Ahmed B.",
+        "rating": 5,
+        "text": "Très satisfait du service. L'expert s'est déplacé chez le vendeur et m'a fourni un rapport complet en moins d'une heure.",
+        "location": "Marrakech",
+        "date": "Il y a 3 semaines",
+        "car": "BMW Série 3 2018"
+      }
+    ],
+    "stats": {
+      "rating": "4.9/5",
+      "reviews": "500+",
+      "satisfaction": "98%"
+    },
+    "cta": {
+      "title": "Partagez votre expérience",
+      "text": "Votre avis nous aide à améliorer nos services",
+      "button": "Laisser un avis"
+    }
+  },
+    "footer": {
+    "description": "L'expertise automobile n°1 au Maroc. Service 100% mobile pour inspecter votre voiture d'occasion avant l'achat.",
+    "quickLinks": "Liens rapides",
+    "contact": "Contact",
+    "links": {
+      "home": "Accueil",
+      "services": "Nos Services",
+      "pricing": "Tarifs",
+      "contact": "Contact",
+      "about": "À propos",
+      "howItWorks": "Comment ça marche",
+      "faq": "FAQ"
+    },
+    "contactInfo": {
+      "phone": "+212 6 65 61 13 76",
+      "email": "contact@novaautoexpertise.ma",
+      "address": "Casablanca, Maroc",
+      "hours": "Lun - Dim: 8h - 20h"
+    },
+    "newsletter": {
+      "title": "Restez informé",
+      "subtitle": "Abonnez-vous à notre newsletter pour recevoir nos conseils et offres",
+      "placeholder": "Votre email",
+      "button": "S'abonner",
+      "success": "Merci pour votre inscription !",
+      "error": "Une erreur est survenue"
+    },
+    "legal": {
+      "copyright": "© 2025 NovaAuto - Tous droits réservés",
+      "privacy": "Politique de confidentialité",
+      "terms": "Conditions d'utilisation",
+      "cookies": "Politique des cookies"
+    },
+    "social": "Suivez-nous"
+  }
+}
