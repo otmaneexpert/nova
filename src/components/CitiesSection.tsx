@@ -44,6 +44,7 @@ import { motion } from "framer-motion";
 import { ScrollAnimation } from "./animations/ScrollAnimation";
 import { useTranslation } from "react-i18next";
 import { useDirection } from "@/hooks/useDirection";
+import map from "@/assets/map.png"
 
 const CitiesSection = () => {
   const { t } = useTranslation();
@@ -78,7 +79,7 @@ const CitiesSection = () => {
             style={{ direction: isRTL ? "rtl" : "ltr" }}
           >
             <motion.img 
-              src="https://5abir.ma/wp-content/uploads/2025/11/Green-and-Blue-Car-Flat-Illustrative-Car-Trade-Logo-1.png"
+              src={map}
               alt={t("cities.mapAlt")}
               className="max-w-full h-auto"
               style={{ 

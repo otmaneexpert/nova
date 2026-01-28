@@ -305,16 +305,14 @@
 
 // export default ContactForm;
 import { useState } from "react";
-import { Calendar } from "@/components/ui/calendar";
 import { useTranslation } from "react-i18next";
 import { useDirection } from "@/hooks/useDirection";
-import { enUS, fr, arSA, Locale } from "date-fns/locale";
 
 const ContactForm = () => {
   const { t, i18n } = useTranslation();
   const { isRTL } = useDirection();
   
-  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<string>("");
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -336,7 +334,7 @@ const ContactForm = () => {
       
       setSubmitStatus("success");
       setFormData({ name: "", phone: "", city: "", message: "" });
-      setDate(new Date());
+      setDate("");
     } catch (error) {
       console.error("Form submission error:", error);
       setSubmitStatus("error");
@@ -351,10 +349,23 @@ const ContactForm = () => {
     setFormData({ ...formData, [field]: e.target.value });
   };
 
-  const localeMap: Record<string, Locale> = {
-    en: enUS,
-    fr: fr,
-    ar: arSA,
+  // الحصول على تاريخ اليوم كحد أدنى
+  const getTodayDate = () => {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
+  };
+
+  // تنسيق التاريخ للعرض
+  const formatDateForDisplay = (dateString: string) => {
+    if (!dateString) return "";
+    
+    const dateObj = new Date(dateString);
+    return dateObj.toLocaleDateString(i18n.language, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
   };
 
   return (
@@ -424,6 +435,29 @@ const ContactForm = () => {
                 />
               </div>
 
+              {/* حقل التاريخ الجديد */}
+              <div>
+                <label htmlFor="date" className="sr-only">
+                  {t("contact.form.date.label")}
+                </label>
+                <input
+                  type="date"
+                  id="date"
+                  min={getTodayDate()}
+                  className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/60 focus:outline-none focus:border-secondary transition-colors"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  required
+                  dir={isRTL ? "rtl" : "ltr"}
+                  style={{ textAlign: isRTL ? "right" : "left" }}
+                />
+                {date && (
+                  <p className="mt-2 text-sm text-white/70">
+                    {isRTL ? "التاريخ المحدد:" : "Date sélectionnée:"} {formatDateForDisplay(date)}
+                  </p>
+                )}
+              </div>
+
               <div>
                 <label htmlFor="message" className="sr-only">
                   {t("contact.form.message.label")}
@@ -441,65 +475,61 @@ const ContactForm = () => {
               </div>
             </div>
 
-            {/* التقويم ومعلومات إضافية */}
+            {/* معلومات إضافية */}
             <div className="flex flex-col items-center">
               <div className="w-full">
                 <h3 className="text-lg font-semibold mb-3 text-white/90" style={{ direction: isRTL ? "rtl" : "ltr" }}>
-                  {t("contact.form.date.label")}
+                  {t("contact.form.contactInfo") || (isRTL ? "معلومات التواصل" : "Informations de contact")}
                 </h3>
-                
-                <div className="bg-white rounded-lg p-2 shadow-lg">
-                  <Calendar
-                    mode="single"
-                    selected={date}
-                    onSelect={setDate}
-                    className={`rounded-md ${isRTL ? "rtl-calendar" : ""}`}
-                    classNames={{
-                      months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
-                      month: "space-y-4",
-                      caption: "flex justify-center pt-1 relative items-center",
-                      caption_label: "text-sm font-medium",
-                      nav: "space-x-1 flex items-center",
-                      nav_button: "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100",
-                      nav_button_previous: "absolute left-1",
-                      nav_button_next: "absolute right-1",
-                      table: "w-full border-collapse space-y-1",
-                      head_row: "flex",
-                      head_cell: "text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]",
-                      row: "flex w-full mt-2",
-                      cell: "text-center text-sm p-0 relative [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-                      day: "h-9 w-9 p-0 font-normal aria-selected:opacity-100",
-                      day_selected: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
-                      day_today: "bg-accent text-accent-foreground",
-                      day_outside: "text-muted-foreground opacity-50",
-                      day_disabled: "text-muted-foreground opacity-50",
-                      day_range_middle: "aria-selected:bg-accent aria-selected:text-accent-foreground",
-                      day_hidden: "invisible",
-                    }}
-                    style={{ direction: isRTL ? "rtl" : "ltr" }}
-                    locale={localeMap[i18n.language] ?? enUS}
-                  />
-                </div>
 
                 {/* معلومات الاتصال */}
-                <div className="mt-6 bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
                   <h4 className="font-semibold mb-2 text-secondary" style={{ direction: isRTL ? "rtl" : "ltr" }}>
-                    {isRTL ? "معلومات الاتصال" : "Informations de contact"}
+                    {isRTL ? "معلومات الاتصال" : "Contactez-nous"}
                   </h4>
-                  <ul className="space-y-2 text-sm text-white/80">
-                    <li className={`flex items-center gap-2 ${isRTL ? "flex-row-reverse" : ""}`}>
-                      <span>📞</span>
-                      <span>+212 6 65 61 13 76</span>
+                  <ul className="space-y-3 text-sm text-white/80">
+                    <li className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
+                      <span className="text-secondary text-lg">📞</span>
+                      <div className="flex flex-col">
+                        <span className="font-semibold">{isRTL ? "رقم الهاتف:" : "Téléphone:"}</span>
+                        <span className="text-white">+212 6 65 61 13 76</span>
+                      </div>
                     </li>
-                    <li className={`flex items-center gap-2 ${isRTL ? "flex-row-reverse" : ""}`}>
-                      <span>✉️</span>
-                      <span>contact@novaautoexpertise.ma</span>
+                    <li className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
+                      <span className="text-secondary text-lg">✉️</span>
+                      <div className="flex flex-col">
+                        <span className="font-semibold">{isRTL ? "البريد الإلكتروني:" : "Email:"}</span>
+                        <span className="text-white break-all">contact@novaautoexpertise.ma</span>
+                      </div>
                     </li>
-                    <li className={`flex items-center gap-2 ${isRTL ? "flex-row-reverse" : ""}`}>
-                      <span>🕒</span>
-                      <span>{isRTL ? "متاح 24/7" : "Disponible 24/7"}</span>
+                    <li className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
+                      <span className="text-secondary text-lg">🕒</span>
+                      <div className="flex flex-col">
+                        <span className="font-semibold">{isRTL ? "ساعات العمل:" : "Horaires:"}</span>
+                        <span className="text-white">{isRTL ? "متاح 24/7" : "Disponible 24/7"}</span>
+                      </div>
+                    </li>
+                    <li className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
+                      <span className="text-secondary text-lg">📍</span>
+                      <div className="flex flex-col">
+                        <span className="font-semibold">{isRTL ? "العنوان:" : "Adresse:"}</span>
+                        <span className="text-white">{isRTL ? "المغرب" : "Maroc"}</span>
+                      </div>
                     </li>
                   </ul>
+                </div>
+
+                {/* نصائح للتاريخ */}
+                <div className="mt-4 bg-white/5 rounded-lg p-3 border border-white/10">
+                  <h5 className="font-semibold text-secondary text-sm mb-1" style={{ direction: isRTL ? "rtl" : "ltr" }}>
+                    {isRTL ? "ملاحظة:" : "Note:"}
+                  </h5>
+                  <p className="text-xs text-white/70" style={{ direction: isRTL ? "rtl" : "ltr" }}>
+                    {isRTL 
+                      ? "يرجى اختيار تاريخ مناسب للموعد. سيتم الاتصال بك للتأكيد."
+                      : "Veuillez sélectionner une date appropriée pour le rendez-vous. Nous vous contacterons pour confirmation."
+                    }
+                  </p>
                 </div>
               </div>
 
@@ -519,20 +549,20 @@ const ContactForm = () => {
                       {isRTL ? "جاري الإرسال..." : "Envoi en cours..."}
                     </>
                   ) : (
-                    t("contact.form.submit")
+                    t("contact.form.submit") || (isRTL ? "إرسال الطلب" : "Envoyer la demande")
                   )}
                 </button>
 
                 {/* رسالة الحالة */}
                 {submitStatus === "success" && (
                   <div className="bg-green-500/20 text-green-300 text-sm p-3 rounded-lg text-center border border-green-500/30">
-                    ✅ {t("contact.form.success")}
+                    ✅ {t("contact.form.success") || (isRTL ? "تم إرسال طلبك بنجاح!" : "Votre demande a été envoyée avec succès!")}
                   </div>
                 )}
 
                 {submitStatus === "error" && (
                   <div className="bg-red-500/20 text-red-300 text-sm p-3 rounded-lg text-center border border-red-500/30">
-                    ❌ {t("contact.form.error")}
+                    ❌ {t("contact.form.error") || (isRTL ? "حدث خطأ أثناء الإرسال" : "Une erreur s'est produite lors de l'envoi")}
                   </div>
                 )}
               </div>
