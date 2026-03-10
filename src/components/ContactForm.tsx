@@ -304,15 +304,22 @@
 // };
 
 // export default ContactForm;
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useDirection } from "@/hooks/useDirection";
+import emailjs from "@emailjs/browser";
+
+// تهيئة EmailJS (يمكنك إضافة هذه القيم في ملف .env)
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 const ContactForm = () => {
   const { t, i18n } = useTranslation();
   const { isRTL } = useDirection();
   
   const [date, setDate] = useState<string>("");
+  const [selectedPack, setSelectedPack] = useState<string>("standard");
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -321,6 +328,15 @@ const ContactForm = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  
+  // استخدام useRef للنموذج
+  const formRef = useRef<HTMLFormElement>(null);
+
+  // تعريف الباقات المتاحة
+  const packs = [
+    { id: "basic", name: t("pricing.packs.basic.name") },
+    { id: "premium", name: t("pricing.packs.premium.name") }
+  ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -328,15 +344,35 @@ const ContactForm = () => {
     setSubmitStatus("idle");
 
     try {
-      // محاكاة إرسال البيانات
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      console.log("Form submitted:", { ...formData, date });
+      // التأكد من تهيئة EmailJS
+      if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+        throw new Error("EmailJS configuration is missing");
+      }
+
+      // التأكد من وجود ref للنموذج
+      if (!formRef.current) {
+        throw new Error("Form reference is not available");
+      }
+
+      // إرسال النموذج باستخدام EmailJS
+      const result = await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      console.log("EmailJS response:", result.text);
       
       setSubmitStatus("success");
+      
+      // إعادة تعيين الحقول
       setFormData({ name: "", phone: "", city: "", message: "" });
       setDate("");
+      setSelectedPack("standard");
+      
     } catch (error) {
-      console.error("Form submission error:", error);
+      console.error("EmailJS submission error:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -368,6 +404,21 @@ const ContactForm = () => {
     });
   };
 
+  // الحصول على سعر الباقة المحددة
+  const getPackPrice = (packId: string) => {
+    switch(packId) {
+      case "basic": return 350;
+      case "premium": return 500;
+      default: return 350;
+    }
+  };
+
+  // الحصول على اسم الباقة
+  const getPackName = (packId: string) => {
+    const pack = packs.find(p => p.id === packId);
+    return pack ? pack.name : "";
+  };
+
   return (
     <section id="contact" className="py-16 md:py-24 bg-primary text-white">
       <div className="container mx-auto px-4">
@@ -381,7 +432,38 @@ const ContactForm = () => {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-8">
+          <form 
+            ref={formRef} 
+            onSubmit={handleSubmit} 
+            className="grid md:grid-cols-2 gap-8"
+          >
+            {/* حقول مخفية لإرسال البيانات إلى EmailJS */}
+            <input 
+              type="hidden" 
+              name="pack_name" 
+              value={getPackName(selectedPack)} 
+            />
+            <input 
+              type="hidden" 
+              name="pack_price" 
+              value={`${getPackPrice(selectedPack)} ${t("pricing.pack.currency")}`} 
+            />
+            <input 
+              type="hidden" 
+              name="formatted_date" 
+              value={date ? formatDateForDisplay(date) : ""} 
+            />
+            <input 
+              type="hidden" 
+              name="language" 
+              value={i18n.language} 
+            />
+            <input 
+              type="hidden" 
+              name="direction" 
+              value={isRTL ? "rtl" : "ltr"} 
+            />
+
             {/* حقول النموذج */}
             <div className="space-y-4">
               <div>
@@ -391,6 +473,7 @@ const ContactForm = () => {
                 <input
                   type="text"
                   id="name"
+                  name="user_name" // مطلوب لـ EmailJS
                   placeholder={t("contact.form.name.placeholder")}
                   className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/60 focus:outline-none focus:border-secondary transition-colors"
                   value={formData.name}
@@ -408,6 +491,7 @@ const ContactForm = () => {
                 <input
                   type="tel"
                   id="phone"
+                  name="user_phone" // مطلوب لـ EmailJS
                   placeholder={t("contact.form.phone.placeholder")}
                   className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/60 focus:outline-none focus:border-secondary transition-colors"
                   value={formData.phone}
@@ -425,6 +509,7 @@ const ContactForm = () => {
                 <input
                   type="text"
                   id="city"
+                  name="user_city" // مطلوب لـ EmailJS
                   placeholder={t("contact.form.city.placeholder")}
                   className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/60 focus:outline-none focus:border-secondary transition-colors"
                   value={formData.city}
@@ -435,7 +520,30 @@ const ContactForm = () => {
                 />
               </div>
 
-              {/* حقل التاريخ الجديد */}
+              {/* Dropdown لاختيار الباقة */}
+              <div>
+                <label htmlFor="pack" className="block mb-2 text-sm font-medium text-white/80">
+                  {isRTL ? "اختر الباقة" : "Choisissez le pack"}
+                </label>
+                <select
+                  id="pack"
+                  name="selected_pack" // مطلوب لـ EmailJS
+                  value={selectedPack}
+                  onChange={(e) => setSelectedPack(e.target.value)}
+                  className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:border-secondary transition-colors"
+                  dir={isRTL ? "rtl" : "ltr"}
+                  style={{ textAlign: isRTL ? "right" : "left" }}
+                  required
+                >
+                  {packs.map((pack) => (
+                    <option key={pack.id} value={pack.id} className="bg-primary text-white">
+                      {pack.name} - {getPackPrice(pack.id)} {t("pricing.pack.currency")}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* حقل التاريخ */}
               <div>
                 <label htmlFor="date" className="sr-only">
                   {t("contact.form.date.label")}
@@ -443,9 +551,10 @@ const ContactForm = () => {
                 <input
                   type="date"
                   id="date"
+                  name="event_date" // مطلوب لـ EmailJS
                   min={getTodayDate()}
                   className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/60 focus:outline-none focus:border-secondary transition-colors"
-                  value={date}
+                  value={date || getTodayDate()}
                   onChange={(e) => setDate(e.target.value)}
                   required
                   dir={isRTL ? "rtl" : "ltr"}
@@ -464,6 +573,7 @@ const ContactForm = () => {
                 </label>
                 <textarea
                   id="message"
+                  name="user_message" // مطلوب لـ EmailJS
                   placeholder={t("contact.form.message.placeholder")}
                   rows={4}
                   className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/60 focus:outline-none focus:border-secondary transition-colors resize-none"
@@ -475,64 +585,8 @@ const ContactForm = () => {
               </div>
             </div>
 
-            {/* معلومات إضافية */}
+            {/* معلومات الإرسال والتأكيد */}
             <div className="flex flex-col items-center">
-              <div className="w-full">
-                <h3 className="text-lg font-semibold mb-3 text-white/90" style={{ direction: isRTL ? "rtl" : "ltr" }}>
-                  {t("contact.form.contactInfo") || (isRTL ? "معلومات التواصل" : "Informations de contact")}
-                </h3>
-
-                {/* معلومات الاتصال */}
-                <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-                  <h4 className="font-semibold mb-2 text-secondary" style={{ direction: isRTL ? "rtl" : "ltr" }}>
-                    {isRTL ? "معلومات الاتصال" : "Contactez-nous"}
-                  </h4>
-                  <ul className="space-y-3 text-sm text-white/80">
-                    <li className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
-                      <span className="text-secondary text-lg">📞</span>
-                      <div className="flex flex-col">
-                        <span className="font-semibold">{isRTL ? "رقم الهاتف:" : "Téléphone:"}</span>
-                        <span className="text-white">+212 6 65 61 13 76</span>
-                      </div>
-                    </li>
-                    <li className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
-                      <span className="text-secondary text-lg">✉️</span>
-                      <div className="flex flex-col">
-                        <span className="font-semibold">{isRTL ? "البريد الإلكتروني:" : "Email:"}</span>
-                        <span className="text-white break-all">contact@novaautoexpertise.ma</span>
-                      </div>
-                    </li>
-                    <li className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
-                      <span className="text-secondary text-lg">🕒</span>
-                      <div className="flex flex-col">
-                        <span className="font-semibold">{isRTL ? "ساعات العمل:" : "Horaires:"}</span>
-                        <span className="text-white">{isRTL ? "متاح 24/7" : "Disponible 24/7"}</span>
-                      </div>
-                    </li>
-                    <li className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
-                      <span className="text-secondary text-lg">📍</span>
-                      <div className="flex flex-col">
-                        <span className="font-semibold">{isRTL ? "العنوان:" : "Adresse:"}</span>
-                        <span className="text-white">{isRTL ? "المغرب" : "Maroc"}</span>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* نصائح للتاريخ */}
-                <div className="mt-4 bg-white/5 rounded-lg p-3 border border-white/10">
-                  <h5 className="font-semibold text-secondary text-sm mb-1" style={{ direction: isRTL ? "rtl" : "ltr" }}>
-                    {isRTL ? "ملاحظة:" : "Note:"}
-                  </h5>
-                  <p className="text-xs text-white/70" style={{ direction: isRTL ? "rtl" : "ltr" }}>
-                    {isRTL 
-                      ? "يرجى اختيار تاريخ مناسب للموعد. سيتم الاتصال بك للتأكيد."
-                      : "Veuillez sélectionner une date appropriée pour le rendez-vous. Nous vous contacterons pour confirmation."
-                    }
-                  </p>
-                </div>
-              </div>
-
               {/* زر الإرسال وحالة التقديم */}
               <div className="w-full mt-6 space-y-4">
                 <button
@@ -549,7 +603,9 @@ const ContactForm = () => {
                       {isRTL ? "جاري الإرسال..." : "Envoi en cours..."}
                     </>
                   ) : (
-                    t("contact.form.submit") || (isRTL ? "إرسال الطلب" : "Envoyer la demande")
+                    <>
+                      {isRTL ? "احجز الآن" : "Réserver maintenant"} - {getPackPrice(selectedPack)} {t("pricing.pack.currency")}
+                    </>
                   )}
                 </button>
 
@@ -565,6 +621,18 @@ const ContactForm = () => {
                     ❌ {t("contact.form.error") || (isRTL ? "حدث خطأ أثناء الإرسال" : "Une erreur s'est produite lors de l'envoi")}
                   </div>
                 )}
+
+                {/* رابط للاتصال المباشر */}
+                <div className="text-center">
+                  <a 
+                    href="tel:+212665611376" 
+                    className="inline-flex items-center gap-2 text-white/80 hover:text-white text-sm transition-colors"
+                  >
+                    <span className="text-secondary">📞</span>
+                    {isRTL ? "للحجز السريع، اتصل الآن:" : "Pour une réservation rapide:"}
+                    <span className="font-semibold text-white" dir="ltr">+212 6 65 61 13 76</span>
+                  </a>
+                </div>
               </div>
             </div>
           </form>
@@ -573,8 +641,8 @@ const ContactForm = () => {
           <div className="mt-12 text-center text-white/70 text-sm">
             <p style={{ direction: isRTL ? "rtl" : "ltr" }}>
               {isRTL 
-                ? "سنقوم بالاتصال بك خلال 30 دقيقة لتأكيد الموعد. يمكنك أيضًا الاتصال بنا مباشرة على الرقم أعلاه."
-                : "Nous vous contacterons dans les 30 minutes pour confirmer le rendez-vous. Vous pouvez également nous appeler directement au numéro ci-dessus."
+                ? "نعمل من الإثنين إلى الأحد، من الساعة 8 صباحاً حتى 8 مساءً. نضمن الرد على جميع الاستفسارات خلال 30 دقيقة."
+                : "Nous travaillons du lundi au dimanche, de 8h à 20h. Nous garantissons une réponse à toutes les demandes dans les 30 minutes."
               }
             </p>
           </div>

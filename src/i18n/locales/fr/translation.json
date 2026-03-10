@@ -60,8 +60,9 @@
       }
     }
   },
-    "pricing": {
+  "pricing": {
     "title": "Nos Tarifs ?",
+    "mostPopular": "Le Plus Populaire",
     "pack": {
       "name": "Pack D'expertise",
       "startingFrom": "A partir de",
@@ -76,6 +77,50 @@
         "Test drive"
       ],
       "cta": "plus de détails"
+    },
+    "packs": {
+      "basic": {
+        "name": "Pack Basique",
+        "features": [
+            "Inspection du châssis intérieur et extérieur",
+            "Détection des traces d’accidents ou réparations antérieures",
+            "Diagnostic électronique (OBD)",
+            "Vérification de la cohérence du kilométrage (anti-fraude compteur)",
+            "Contrôle moteur (bruits, fuites, fonctionnement général)",
+            "Vérification de base de la boîte de vitesses",
+            "Rapport simplifié avec conseils"
+        ],
+        "cta": "Choisir le Pack Basique"
+      },
+      "standard": {
+        "name": "Pack Standard",
+      "features": [
+          "Tous les services du Pack Basic",
+          "Diagnostic électronique avancé (tous calculateurs)",
+          "Utilisation d’équipements professionnels spécialisés",
+          "Test du circuit de refroidissement (compresseur de pression)",
+          "Vérification du dynamo (alternateur) et de la batterie",
+          "Contrôle de l’huile de frein",
+          "Vérification des bougies, injecteurs et système d’injection",
+          "Analyse approfondie moteur & boîte de vitesses",
+          "Essai routier du véhicule (détection des vibrations, bruits anormaux, comportement de la boîte, direction et freinage)",
+          "Rapport détaillé avec photos"
+      ],
+        "cta": "Choisir le Pack Standard"
+      },
+      "premium": {
+        "name": "Pack Premium",
+        "features": [
+            "Diagnostic réalisé par des experts spécialisés",
+            "Équipements dédiés aux véhicules de luxe",
+            "Diagnostic constructeur approfondi",
+            "Analyse complète moteur, boîte, transmission et électronique",
+            "Essai routier professionnel",
+            "Vérification châssis, carrosserie et systèmes avancés",
+            "Rapport professionnel complet (PDF + photos)"
+        ],
+        "cta": "Choisir le Pack Premium"
+      }
     }
   },
     "cities": {
