@@ -629,7 +629,7 @@ const ContactForm = () => {
                     className="inline-flex items-center gap-2 text-white/80 hover:text-white text-sm transition-colors"
                   >
                     <span className="text-secondary">📞</span>
-                    {isRTL ? "للحجز السريع، اتصل الآن:" : "Pour une réservation rapide:"}
+                    {isRTL ? " للحجز السريع، اتصل الآن:" : "Pour une réservation rapide:"}
                     <span className="font-semibold text-white" dir="ltr">+212 6 65 61 13 76</span>
                   </a>
                 </div>
