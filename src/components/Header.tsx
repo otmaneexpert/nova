@@ -112,7 +112,8 @@ const Header = () => {
                 className="w-10 h-10 object-contain"
               />
               <span className="ml-2 text-2xl font-bold">
-                <span className="text-primary">NOVA</span>
+                <span className="text-primary">NOVA AUTO
+                </span>
               </span>
             </div>
           </a>
