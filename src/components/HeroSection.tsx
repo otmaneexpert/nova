@@ -77,7 +77,7 @@ const HeroSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="relative min-h-[500px] md:min-h-[550px] flex items-center justify-center overflow-hidden">
+    <section className="relative h-[calc(100svh-104px)] w-full flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
