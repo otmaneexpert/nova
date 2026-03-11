@@ -10,8 +10,6 @@ i18n
   .use(initReactI18next)
   .init({
     ...i18nConfig,
-    lng: localStorage.getItem("language") || "ar", // العربية افتراضية
-    fallbackLng: 'ar',
     resources: {
       ar: {
         translation: arTranslation

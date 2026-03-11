@@ -75,7 +75,7 @@ const SupportSection = () => {
               {t("support.subtitle")}
             </p>
             <a
-              href="https://wa.me/212640051774"
+              href="https://wa.me/212665611376"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-3 rounded-full transition-colors"

@@ -1,6 +1,6 @@
 export const i18nConfig = {
   supportedLngs: ['ar', 'fr'],
-  fallbackLng: 'ar',
+  fallbackLng: 'fr',
   defaultNS: 'translation',
   react: { 
     useSuspense: false 
