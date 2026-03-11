@@ -15,8 +15,8 @@ const LanguageSwitcher = () => {
     dir: Direction;
   };
   const languages: Language[] = [
-    { code: "ar", name: "العربية", flag: "🇲🇦", dir: "rtl" },
     { code: "fr", name: "Français", flag: "🇫🇷", dir: "ltr" },
+    { code: "ar", name: "العربية", flag: "🇲🇦", dir: "rtl" },
   ];
 
 
