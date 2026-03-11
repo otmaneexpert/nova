@@ -319,7 +319,7 @@ const ContactForm = () => {
   const { isRTL } = useDirection();
   
   const [date, setDate] = useState<string>("");
-  const [selectedPack, setSelectedPack] = useState<string>("standard");
+  const [selectedPack, setSelectedPack] = useState<string>("basic");
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -369,7 +369,7 @@ const ContactForm = () => {
       // إعادة تعيين الحقول
       setFormData({ name: "", phone: "", city: "", message: "" });
       setDate("");
-      setSelectedPack("standard");
+      setSelectedPack("basic");
       
     } catch (error) {
       console.error("EmailJS submission error:", error);
