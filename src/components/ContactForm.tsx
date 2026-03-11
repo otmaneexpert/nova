@@ -331,7 +331,7 @@ const ContactForm = () => {
   
   // استخدام useRef للنموذج
   const formRef = useRef<HTMLFormElement>(null);
-
+  const orderNumberRef = useRef("ORD-" + Date.now());
   // تعريف الباقات المتاحة
   const packs = [
     { id: "basic", name: t("pricing.packs.basic.name") },
@@ -584,7 +584,7 @@ const ContactForm = () => {
                 />
               </div>
             </div>
-
+            <input type="hidden" name="order_number" value={orderNumberRef.current} />
             {/* معلومات الإرسال والتأكيد */}
             <div className="flex flex-col items-center">
               {/* زر الإرسال وحالة التقديم */}
