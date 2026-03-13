@@ -178,8 +178,23 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/20 mt-8 pt-8 text-center text-white/60 text-sm">
+        {/* <div className="border-t border-white/20 mt-8 pt-8 text-center text-white/60 text-sm">
           <p>{t("footer.legal.copyright")}</p>
+        </div> */}
+        <div className="border-t border-white/20 mt-8 pt-8 text-center text-white/60 text-sm space-y-2">
+          <p>{t("footer.legal.copyright")}</p>
+        
+          <p>
+            تم تطوير الموقع بواسطة{" "}
+            <a
+              href="https://wa.me/212766040155"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-secondary hover:underline"
+            >
+              Ayoub WhatsApp
+            </a>
+          </p>
         </div>
       </div>
     </footer>
